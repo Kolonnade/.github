@@ -25,7 +25,7 @@ Style, briefly:
 
 - Write code that reads like the code around it.
 - Comment the trap, not the syntax. "Backup Eligible is immutable after registration, and overwriting it breaks every later assertion" earns its place; "increment the counter" does not.
-- A change in behaviour comes with a test that fails without it.
+- A change in behavior comes with a test that fails without it.
 - Keep the public API small. Anything not meant as API belongs under `internal/`.
 
 ## Commits and pull requests

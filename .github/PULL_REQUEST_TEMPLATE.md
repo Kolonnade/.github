@@ -14,7 +14,7 @@ A vulnerability does not belong in a pull request either — see SECURITY.md.
 
 - [ ] Every commit is signed off (`git commit -s`), certifying the [DCO](https://developercertificate.org/)
 - [ ] `go vet ./...` and `go test ./...` pass, with the database-backed tests actually running
-- [ ] A change in behaviour comes with a test that fails without it
+- [ ] A change in behavior comes with a test that fails without it
 - [ ] Public API changes are documented, and anything not meant as API is unexported or `internal/`
 - [ ] Nothing here decides *what a person may do* — authorization stays with the application
 - [ ] Nothing here reimplements what `zitadel/oidc` provides

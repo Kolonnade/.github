@@ -16,7 +16,7 @@ A useful report has: what an attacker can do, the steps or a script that show it
 
 | | |
 |---|---|
-| Acknowledgement | Within three working days |
+| Acknowledgment | Within three working days |
 | First assessment | Within seven days, saying whether we think it is a vulnerability and how severe |
 | Fix and advisory | As fast as the severity warrants, coordinated with you |
 | Disclosure | A GitHub Security Advisory with a CVE, published when the fix ships or at 90 days, whichever is first, unless we agree otherwise |

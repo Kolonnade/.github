@@ -6,7 +6,7 @@ Portico is a passkey-first identity provider you run yourself, with the client l
 
 ## What Portico gives you
 
-- **Passkeys, and nothing else to remember.** WebAuthn enrolment, sign-in and recovery, with the credential-flag and sign-count rules that synced passkeys actually need.
+- **Passkeys, and nothing else to remember.** WebAuthn enrollment, sign-in and recovery, with the credential-flag and sign-count rules that synced passkeys actually need.
 - **One sign-in across your sites**, whether they sit on subdomains of one domain or on entirely different ones. No third-party cookies involved.
 - **Several signed-in accounts at once**, numbered from 0 the way people already expect, with each site signed in as whichever account the person chose for it.
 - **Sign-out that arrives**, through OpenID Connect Back-Channel Logout, and profile changes pushed to sites as Shared Signals events rather than waiting for the next token refresh.
