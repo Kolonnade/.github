@@ -1,0 +1,79 @@
+# Reusable CI for the Go repositories.
+#
+#   jobs:
+#     ci:
+#       uses: Kolonnade/.github/.github/workflows/go-ci.yml@main
+#
+# A caller that needs something different should copy this file rather than
+# bend it out of shape.
+name: Go CI
+
+on:
+  workflow_call:
+    inputs:
+      go-version:
+        description: Go version to build and test with
+        type: string
+        default: "1.25"
+      postgres:
+        description: Start a PostgreSQL service and export TEST_DATABASE_URL
+        type: boolean
+        default: true
+      working-directory:
+        description: Directory holding go.mod
+        type: string
+        default: "."
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/test?sslmode=disable
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go-version }}
+          cache-dependency-path: ${{ inputs.working-directory }}/go.sum
+      - name: Vet
+        run: go vet ./...
+      - name: Test
+        run: go test -race ./...
+      - name: Build
+        run: go build ./...
+
+  vulncheck:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go-version }}
+          cache-dependency-path: ${{ inputs.working-directory }}/go.sum
+      # Reports only vulnerabilities this code actually reaches, so a finding
+      # here is real. It fails the run on purpose.
+      - name: govulncheck
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          govulncheck ./...

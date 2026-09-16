@@ -1,0 +1,55 @@
+name: Bug report
+description: Something behaves differently from what the documentation says
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Found a security problem?** Close this and report it privately instead: [SECURITY.md](https://github.com/Kolonnade/.github/blob/main/SECURITY.md).
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what happened, and what you expected instead.
+      placeholder: |
+        Signed in at …, then opened …
+        Expected: the second site signs in with no prompt
+        Got: redirected back to sign in
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce it
+      description: The smallest sequence that shows it. A failing test or a curl command is ideal.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.3.1, or a commit hash
+    validations:
+      required: true
+  - type: dropdown
+    id: client
+    attributes:
+      label: Where does it happen?
+      multiple: true
+      options:
+        - The provider
+        - A website using the relying-party library
+        - An iOS or macOS app
+        - An Android app
+        - Somewhere else
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Go version, PostgreSQL version, reverse proxy, operating system — whatever is relevant.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Server logs around the failure. **Remove tokens, cookies, credential identifiers and email addresses.**
+      render: text

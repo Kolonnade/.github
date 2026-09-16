@@ -1,0 +1,32 @@
+name: Proposal
+description: Suggest a change or something new
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem before the solution — it is the part we can most usefully argue with.
+
+        Two things the projects deliberately do not do: decide **what a person may do** (that is the application's job, not the identity provider's), and reimplement protocol machinery that [`zitadel/oidc`](https://github.com/zitadel/oidc) already provides.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What can't you do today, and what are you doing instead?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you have in mind
+      description: A sketch is fine. An API shape, if you have one in mind.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What else you considered
+      description: Including doing nothing, and why that isn't enough.
+  - type: textarea
+    id: standards
+    attributes:
+      label: Relevant specifications
+      description: If an RFC or an OpenID specification covers this, name it. We would rather follow one than invent something.
